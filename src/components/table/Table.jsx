@@ -47,9 +47,15 @@ export const TableComponent = () => {
 	const events = useSelector((state) => state.events.events);
 	const currentPage = useSelector((state) => state.events.currentPage);
 	const perPage = useSelector((state) => state.events.perPage);
+	const filteredInfo = useSelector((state) => state.events.filteredInfo);
+
 	const from = currentPage * perPage - perPage;
 	const to = currentPage * perPage;
 	let paginatedData = [...events].slice(from, to);
+
+	if (filteredInfo.length) {
+		paginatedData = filteredInfo;
+	}
 
 	const onEventSelect = (item) => {
 		dispatch(getClickedEventAC(item));

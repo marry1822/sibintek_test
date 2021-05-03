@@ -7,6 +7,7 @@ export const GET_CLICKED_EVENT = "GET_CLICKED_EVENT";
 export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 export const INITIALIZE_SUCCESS = "INITIALIZE_SUCCESS";
 export const TOGGLE_CURRENT_PAGE = "TOGGLE_CURRENT_PAGE";
+export const FILTER_EVENTS = "FILTER_EVENTS";
 
 let initialState = {
 	users: {},
@@ -16,6 +17,7 @@ let initialState = {
 	isFetching: true,
 	perPage: 25,
 	currentPage: 1,
+	filteredInfo: [],
 };
 
 const tableReducer = (state = initialState, action) => {
@@ -37,12 +39,27 @@ const tableReducer = (state = initialState, action) => {
 				...state,
 				isFetching: action.isFetching,
 			};
-			case TOGGLE_CURRENT_PAGE: {
-				return {
-					...state,
-					currentPage: action.currentPage,
-				};
-			}
+		case TOGGLE_CURRENT_PAGE: {
+			return {
+				...state,
+				currentPage: action.currentPage,
+			};
+		}
+		case FILTER_EVENTS: {
+			return {
+				...state,
+				filteredInfo: state.events.filter((item) => {
+					let flag;
+					for (let prop in item) {
+						flag = false;
+						flag =
+							item[prop].toString().indexOf(action.text) > -1;
+						if (flag) break;
+					}
+					return flag;
+				}),
+			};
+		}
 		default:
 			return state;
 	}
@@ -76,6 +93,11 @@ export const toggleIsFetching = (isFetching) => ({
 export const toggleCurrentPageAC = (currentPage) => ({
 	type: TOGGLE_CURRENT_PAGE,
 	currentPage,
+});
+
+export const filterEventsAC = (text) => ({
+	type: FILTER_EVENTS,
+	text,
 });
 
 export const getEventInfo = (eventId) => {

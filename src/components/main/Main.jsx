@@ -4,6 +4,7 @@ import { Header } from "../header/Header";
 import { TableComponent } from "../table/Table";
 import { InfoBlock } from "../infoBlock/InfoBlock";
 import { useSelector } from "react-redux";
+import { Filters } from "../filters/Filters";
 
 const Main = () => {
 	const info = useSelector((state) => state.events.eventInfo);
@@ -11,6 +12,7 @@ const Main = () => {
 	return (
 		<div className={s.main_container}>
 			<Header />
+			<Filters />
 			<TableComponent />
 			{info.directory && <InfoBlock />}
 		</div>
