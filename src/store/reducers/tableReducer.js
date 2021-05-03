@@ -6,6 +6,7 @@ export const GET_EVENT_INFO = "GET_EVENT_INFO";
 export const GET_CLICKED_EVENT = "GET_CLICKED_EVENT";
 export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 export const INITIALIZE_SUCCESS = "INITIALIZE_SUCCESS";
+export const TOGGLE_CURRENT_PAGE = "TOGGLE_CURRENT_PAGE";
 
 let initialState = {
 	users: {},
@@ -13,6 +14,8 @@ let initialState = {
 	eventInfo: {},
 	clickedEvent: {},
 	isFetching: true,
+	perPage: 25,
+	currentPage: 1,
 };
 
 const tableReducer = (state = initialState, action) => {
@@ -34,6 +37,12 @@ const tableReducer = (state = initialState, action) => {
 				...state,
 				isFetching: action.isFetching,
 			};
+			case TOGGLE_CURRENT_PAGE: {
+				return {
+					...state,
+					currentPage: action.currentPage,
+				};
+			}
 		default:
 			return state;
 	}
@@ -62,6 +71,11 @@ export const getClickedEventAC = (clickedEvent) => ({
 export const toggleIsFetching = (isFetching) => ({
 	type: TOGGLE_IS_FETCHING,
 	isFetching,
+});
+
+export const toggleCurrentPageAC = (currentPage) => ({
+	type: TOGGLE_CURRENT_PAGE,
+	currentPage,
 });
 
 export const getEventInfo = (eventId) => {

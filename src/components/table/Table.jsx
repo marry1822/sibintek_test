@@ -5,6 +5,7 @@ import {
 	getEventInfo,
 	getClickedEventAC,
 } from "../../store/reducers/tableReducer";
+import { PaginationComponent } from "../pagination/Pagination";
 import s from "../table/Table.module.css";
 
 const useSortableData = (items, config = null) => {
@@ -44,13 +45,18 @@ const useSortableData = (items, config = null) => {
 export const TableComponent = () => {
 	const dispatch = useDispatch();
 	const events = useSelector((state) => state.events.events);
+	const currentPage = useSelector((state) => state.events.currentPage);
+	const perPage = useSelector((state) => state.events.perPage);
+	const from = currentPage * perPage - perPage;
+	const to = currentPage * perPage;
+	let paginatedData = [...events].slice(from, to);
 
 	const onEventSelect = (item) => {
 		dispatch(getClickedEventAC(item));
 		dispatch(getEventInfo(item.id));
 	};
 
-	const { items, requestSort, sortConfig } = useSortableData(events);
+	const { items, requestSort, sortConfig } = useSortableData(paginatedData);
 	const getClassNamesFor = (name) => {
 		if (!sortConfig) {
 			return;
@@ -128,6 +134,7 @@ export const TableComponent = () => {
 					))}
 				</tbody>
 			</Table>
+			<PaginationComponent currentPage={currentPage} perPage={perPage} />
 		</div>
 	);
 };
