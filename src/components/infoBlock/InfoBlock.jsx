@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import s from "../infoBlock/InfoBlock.module.css";
-import Preloader from "../preloader/Preloader";
 
 export const InfoBlock = () => {
 	const eventInfo = useSelector((state) => state.events.eventInfo);

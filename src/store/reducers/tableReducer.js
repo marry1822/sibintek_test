@@ -1,4 +1,4 @@
-import { getUsersAPI, getEventsAPI } from "../../axios/axios";
+import { getEventsAPI } from "../../axios/axios";
 
 export const GET_USERS = "GET_USERS";
 export const GET_EVENTS = "GET_EVENTS";
