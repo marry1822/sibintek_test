@@ -16,7 +16,7 @@ export const getEventsAPI = {
 	},
 	getEventInfo(eventId) {
 		return instance
-			.get(`events_info?id=${eventId}`)
+			.get(`event_info/${eventId}`)
 			.then((response) => response.data);
 	},
 };

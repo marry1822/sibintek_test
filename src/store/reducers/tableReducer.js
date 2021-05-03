@@ -3,11 +3,16 @@ import { getUsersAPI, getEventsAPI } from "../../axios/axios";
 export const GET_USERS = "GET_USERS";
 export const GET_EVENTS = "GET_EVENTS";
 export const GET_EVENT_INFO = "GET_EVENT_INFO";
+export const GET_CLICKED_EVENT = "GET_CLICKED_EVENT";
+export const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+export const INITIALIZE_SUCCESS = "INITIALIZE_SUCCESS";
 
 let initialState = {
-	users: [],
+	users: {},
 	events: [],
 	eventInfo: {},
+	clickedEvent: {},
+	isFetching: true,
 };
 
 const tableReducer = (state = initialState, action) => {
@@ -21,6 +26,14 @@ const tableReducer = (state = initialState, action) => {
 		case GET_EVENT_INFO: {
 			return { ...state, eventInfo: action.eventInfo };
 		}
+		case GET_CLICKED_EVENT: {
+			return { ...state, clickedEvent: action.clickedEvent };
+		}
+		case TOGGLE_IS_FETCHING:
+			return {
+				...state,
+				isFetching: action.isFetching,
+			};
 		default:
 			return state;
 	}
@@ -41,27 +54,22 @@ export const getEventInfoAC = (eventInfo) => ({
 	eventInfo,
 });
 
-export const getUsers = (userId) => {
-	return async (dispatch) => {
-		const res = await getUsersAPI.getUsers(userId);
-		console.log(res);
-		dispatch(getUsersAC(res));
-	};
-};
+export const getClickedEventAC = (clickedEvent) => ({
+	type: GET_CLICKED_EVENT,
+	clickedEvent,
+});
 
-export const getEvents = () => {
-	return async (dispatch) => {
-		const res = await getEventsAPI.getEvents();
-		console.log(res);
-		dispatch(getEventsAC(res));
-	};
-};
+export const toggleIsFetching = (isFetching) => ({
+	type: TOGGLE_IS_FETCHING,
+	isFetching,
+});
 
 export const getEventInfo = (eventId) => {
 	return async (dispatch) => {
+		dispatch(toggleIsFetching(true));
 		const res = await getEventsAPI.getEventInfo(eventId);
-		console.log(res);
 		dispatch(getEventInfoAC(res));
+		dispatch(toggleIsFetching(false));
 	};
 };
 

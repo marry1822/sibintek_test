@@ -1,41 +1,39 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getEventInfo } from "../../store/reducers/tableReducer";
+import React from "react";
+import { useSelector } from "react-redux";
+import s from "../infoBlock/InfoBlock.module.css";
+import Preloader from "../preloader/Preloader";
 
-export const InfoBlock = (props) => {
-	// const dispatch = useDispatch();
+export const InfoBlock = () => {
 	const eventInfo = useSelector((state) => state.events.eventInfo);
-	console.log(eventInfo);
+	const clickedEvent = useSelector((state) => state.events.clickedEvent);
 
 	return (
-		<div>
+		<div className={s.infoBlock_container}>
 			<div>Подробная информация о событии</div>
-
 			<div>
 				<div>
-					{" "}
-					<span>Объект: {eventInfo.title}</span>
+					<span>Объект: {eventInfo.directory}</span>
 				</div>
 				<div>
-					{" "}
-					<span>ID директории: {eventInfo.body}</span>
-				</div>
-				{/* <div>
-					{" "}
-					<span>На доступ к объекту:</span>
+					<span>ID директории: {eventInfo.path_id}</span>
 				</div>
 				<div>
-					{" "}
-					<span>ID группы:</span>
+					<span>На доступ к объекту:{clickedEvent.object} </span>
 				</div>
 				<div>
-					{" "}
-					<span>Группа:</span>
+					<span>ID группы: {eventInfo.group_id}</span>
 				</div>
 				<div>
-					{" "}
-					<span>Доступ:</span>
-				</div> */}
+					<span>Группа: {eventInfo.group}</span>
+				</div>
+				<div>
+					Доступ:
+					{eventInfo.access && (
+						<span>
+							{eventInfo.access[0]}, {eventInfo.access[1]}
+						</span>
+					)}
+				</div>
 			</div>
 		</div>
 	);
