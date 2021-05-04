@@ -1,0 +1,31 @@
+.footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 50px;
+	background-color: rgb(238, 236, 236);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer_container a {
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+	display: block;
+}
+
+.footer_container a:hover {
+	cursor: pointer;
+	text-decoration: none;
+	color: grey;
+}

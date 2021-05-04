@@ -15,7 +15,7 @@ let initialState = {
 	eventInfo: {},
 	clickedEvent: {},
 	isFetching: true,
-	perPage: 10,
+	perPage: 18,
 	currentPage: 1,
 	filteredInfo: [],
 };

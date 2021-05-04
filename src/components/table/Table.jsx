@@ -5,6 +5,7 @@ import {
 	getEventInfo,
 	getClickedEventAC,
 } from "../../store/reducers/tableReducer";
+import { Filters } from "../filters/Filters";
 import { PaginationComponent } from "../pagination/Pagination";
 import s from "../table/Table.module.css";
 
@@ -70,6 +71,7 @@ export const TableComponent = () => {
 
 	return (
 		<div className={s.tableContainer}>
+			<Filters />
 			<Table bordered striped hover size="sm">
 				<thead>
 					<tr>
@@ -125,7 +127,7 @@ export const TableComponent = () => {
 				</thead>
 				<tbody>
 					{items.map((item) => (
-						<tr key={item.id} onClick={() => onEventSelect(item)}>
+						<tr key={item.id} onClick={() => onEventSelect(item)} color='yellow'>
 							<td>{item.event_date}</td>
 							<td>{item.login}</td>
 							<td>{item.full_name}</td>

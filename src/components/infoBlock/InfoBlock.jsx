@@ -7,30 +7,37 @@ export const InfoBlock = () => {
 	const clickedEvent = useSelector((state) => state.events.clickedEvent);
 
 	return (
-		<div className={s.infoBlock_container}>
-			<div>Подробная информация о событии</div>
-			<div>
+		<div className={s.infoBlockContainer}>
+			<div className={s.infoBlockContainer_title}>
+				Подробная информация о событии
+			</div>
+			<div className={s.infoBlockContainer_info}>
 				<div>
-					<span>Объект: {eventInfo.directory}</span>
+					<span>Объект: </span>
+					{eventInfo.directory}
 				</div>
 				<div>
-					<span>ID директории: {eventInfo.path_id}</span>
+					<span>ID директории: </span>
+					{eventInfo.path_id}
 				</div>
 				<div>
-					<span>На доступ к объекту:{clickedEvent.object} </span>
+					<span>На доступ к объекту: </span>
+					{clickedEvent.object}
 				</div>
 				<div>
-					<span>ID группы: {eventInfo.group_id}</span>
+					<span>ID группы: </span>
+					{eventInfo.group_id}
 				</div>
 				<div>
-					<span>Группа: {eventInfo.group}</span>
+					<span>Группа: </span>
+					{eventInfo.group}
 				</div>
 				<div>
-					Доступ:
 					{eventInfo.access && (
-						<span>
+						<p>
+							<span>Доступ: </span>
 							{eventInfo.access[0]}, {eventInfo.access[1]}
-						</span>
+						</p>
 					)}
 				</div>
 			</div>
