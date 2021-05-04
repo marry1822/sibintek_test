@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/sibintek_test/static/css/main.1c26ece3.chunk.css",
+    "main.js": "/sibintek_test/static/js/main.24819492.chunk.js",
+    "main.js.map": "/sibintek_test/static/js/main.24819492.chunk.js.map",
+    "runtime-main.js": "/sibintek_test/static/js/runtime-main.dba83cda.js",
+    "runtime-main.js.map": "/sibintek_test/static/js/runtime-main.dba83cda.js.map",
+    "static/css/2.150d169a.chunk.css": "/sibintek_test/static/css/2.150d169a.chunk.css",
+    "static/js/2.fd78a900.chunk.js": "/sibintek_test/static/js/2.fd78a900.chunk.js",
+    "static/js/2.fd78a900.chunk.js.map": "/sibintek_test/static/js/2.fd78a900.chunk.js.map",
+    "static/js/3.67277070.chunk.js": "/sibintek_test/static/js/3.67277070.chunk.js",
+    "static/js/3.67277070.chunk.js.map": "/sibintek_test/static/js/3.67277070.chunk.js.map",
+    "index.html": "/sibintek_test/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/sibintek_test/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.1c26ece3.chunk.css.map": "/sibintek_test/static/css/main.1c26ece3.chunk.css.map",
+    "static/js/2.fd78a900.chunk.js.LICENSE.txt": "/sibintek_test/static/js/2.fd78a900.chunk.js.LICENSE.txt",
+    "static/media/user.3f107deb.svg": "/sibintek_test/static/media/user.3f107deb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dba83cda.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.fd78a900.chunk.js",
+    "static/css/main.1c26ece3.chunk.css",
+    "static/js/main.24819492.chunk.js"
+  ]
+}
