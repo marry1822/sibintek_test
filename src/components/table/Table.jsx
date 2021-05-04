@@ -47,20 +47,13 @@ export const TableComponent = () => {
 	const events = useSelector((state) => state.events.events);
 	const currentPage = useSelector((state) => state.events.currentPage);
 	const perPage = useSelector((state) => state.events.perPage);
-	const filteredInfo = useSelector((state) => state.events.filteredInfo);
-
+	let filteredInfo = useSelector((state) => state.events.filteredInfo);
 	const from = currentPage * perPage - perPage;
 	const to = currentPage * perPage;
-	let paginatedData = [...events].slice(from, to);
 
-	if (filteredInfo.length) {
-		paginatedData = filteredInfo;
-	}
-
-	const onEventSelect = (item) => {
-		dispatch(getClickedEventAC(item));
-		dispatch(getEventInfo(item.id));
-	};
+	let paginatedData = filteredInfo.length
+		? [...filteredInfo].slice(from, to)
+		: [...events].slice(from, to);
 
 	const { items, requestSort, sortConfig } = useSortableData(paginatedData);
 	const getClassNamesFor = (name) => {
@@ -68,6 +61,11 @@ export const TableComponent = () => {
 			return;
 		}
 		return sortConfig.key === name ? sortConfig.direction : undefined;
+	};
+
+	const onEventSelect = (item) => {
+		dispatch(getClickedEventAC(item));
+		dispatch(getEventInfo(item.id));
 	};
 
 	return (

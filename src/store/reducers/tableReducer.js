@@ -15,7 +15,7 @@ let initialState = {
 	eventInfo: {},
 	clickedEvent: {},
 	isFetching: true,
-	perPage: 25,
+	perPage: 10,
 	currentPage: 1,
 	filteredInfo: [],
 };
@@ -48,16 +48,7 @@ const tableReducer = (state = initialState, action) => {
 		case FILTER_EVENTS: {
 			return {
 				...state,
-				filteredInfo: state.events.filter((item) => {
-					let flag;
-					for (let prop in item) {
-						flag = false;
-						flag =
-							item[prop].toString().indexOf(action.text) > -1;
-						if (flag) break;
-					}
-					return flag;
-				}),
+				filteredInfo: action.filteredInfo,
 			};
 		}
 		default:
@@ -95,9 +86,9 @@ export const toggleCurrentPageAC = (currentPage) => ({
 	currentPage,
 });
 
-export const filterEventsAC = (text) => ({
+export const filterEventsAC = (filteredInfo) => ({
 	type: FILTER_EVENTS,
-	text,
+	filteredInfo,
 });
 
 export const getEventInfo = (eventId) => {

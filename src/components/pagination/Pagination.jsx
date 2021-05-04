@@ -6,8 +6,12 @@ import { toggleCurrentPageAC } from "../../store/reducers/tableReducer";
 export const PaginationComponent = (props) => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.events.events);
+	const filteredData = useSelector((state) => state.events.filteredInfo);
 
-	const pagesCount = Math.ceil(data.length / props.perPage);
+	let pagesCount = filteredData.length
+		? Math.ceil(filteredData.length / props.perPage)
+		: Math.ceil(data.length / props.perPage);
+
 	let active = props.currentPage;
 	let items = [];
 	for (let number = 1; number <= pagesCount; number++) {
